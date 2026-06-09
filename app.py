@@ -53,7 +53,7 @@ def create_app():
     # ── CORS ─────────────────────────────────────────────────
     # Allow all origins for development; restrict in production
     CORS(app, resources={
-        r"/api/*": {"origins": Config.CORS_ORIGINS}
+        r"/*": {"origins": Config.CORS_ORIGINS}
     })
 
     # ── Socket.IO ────────────────────────────────────────────
