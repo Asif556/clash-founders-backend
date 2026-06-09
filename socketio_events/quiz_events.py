@@ -50,6 +50,7 @@ def register_socketio_events(socketio):
         """Handle new WebSocket connection."""
         sid = request.sid
         logger.info(f"🔌 Client connected: {sid}")
+        print("Client Connected")
         emit("connection_ack", {"message": "Connected to quiz server", "sid": sid})
 
     @socketio.on("disconnect")
