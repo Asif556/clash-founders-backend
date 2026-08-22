@@ -104,3 +104,25 @@ def serialize_question_without_options(question: dict) -> dict:
         "id": str(question["_id"]),
         "question": question["question"],
     }
+
+
+def delete_question(question_id: str) -> bool:
+    """Delete a specific question by its ID."""
+    try:
+        db = get_db()
+        result = db.questions.delete_one({"_id": ObjectId(question_id)})
+        return result.deleted_count > 0
+    except Exception as e:
+        logger.error(f"Error deleting question {question_id}: {e}")
+        return False
+
+
+def update_question(question_id: str, data: dict) -> bool:
+    """Update a specific question by its ID."""
+    try:
+        db = get_db()
+        result = db.questions.update_one({"_id": ObjectId(question_id)}, {"$set": data})
+        return result.modified_count > 0 or result.matched_count > 0
+    except Exception as e:
+        logger.error(f"Error updating question {question_id}: {e}")
+        return False
