@@ -134,8 +134,8 @@ def seed_questions():
     # Check if questions already exist
     existing_count = get_question_count()
     if existing_count > 0:
-        logger.info(f"ℹ️ {existing_count} questions already exist. Clearing and re-seeding...")
-        delete_all_questions()
+        logger.info(f"ℹ️ {existing_count} questions already exist. Skipping seed.")
+        return
 
     # Insert seed questions
     count = insert_questions(SEED_QUESTIONS)
