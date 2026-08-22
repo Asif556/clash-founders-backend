@@ -316,24 +316,6 @@ def _start_reveal_phase(socketio):
         "leaderboard": leaderboard
     }, room=QUIZ_ROOM)
 
-    # Schedule transition to Phase 4 (Leaderboard) after reveal duration
-    schedule_phase_transition(
-        "leaderboard",
-        Config.REVEAL_DURATION,
-        _show_leaderboard_phase,
-        socketio
-    )
-
-
-def _show_leaderboard_phase(socketio):
-    """
-    Phase 4: Display live leaderboard to participants.
-    """
-    logger.info("🏆 Phase 4 (Leaderboard)")
-    socketio.emit("show_leaderboard_phase", {
-        "phase": "leaderboard"
-    }, room=QUIZ_ROOM)
-
     logger.info(f"📊 Leaderboard updated with {len(leaderboard)} participants")
 
 
